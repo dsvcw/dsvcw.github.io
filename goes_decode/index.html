@@ -1,6 +1,6 @@
 <!doctype html>
 
-
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Pseudobinary Decoder</title>
@@ -14,6 +14,10 @@
             max-width: 800px;
             padding-left: 20px;
             padding-right: 20px;
+        }
+
+        code {
+            font-size: 1.25em;
         }
     </style>
 
@@ -108,17 +112,17 @@
 </p>
 <form name="msg_data" action="javascript:decode()">
     <label for="e_msg">Encoded Message:</label><br>
-    <input type="text" id="e_msg" value="`BST@Ff@Ffj "><br>
+    <input type="text" id="e_msg" value="`BST@Ff@Ffj " style="width: 100%"><br>
     <label for="msg_start">Start</label><br>
     <input type="number" id="msg_start" value="4" min="0"><br>
     <label for="msg_end">End</label><br>
     <input type="number" id="msg_end" value="7"><br>
     <label for="div">Divider</label><br>
-    <input type="number" id="div" step="0.001" value="1"><br>
+    <input type="number" id="div" step="0.00001" value="1"><br>
     <label for="mul">Multiplier</label><br>
-    <input type="number" id="mul" step="0.001" value="1"><br>
+    <input type="number" id="mul" step="0.00001" value="1"><br>
     <label for="add">Adder</label><br>
-    <input type="number" id="add" step="0.001" value="0"><br>
+    <input type="number" id="add" step="0.000001" value="0"><br>
     <label for="ndig">Digits</label><br>
     <input type="number" id="ndig" value="2"><br><br>
     <input name="Submit" type="submit" value="Decode"/>
