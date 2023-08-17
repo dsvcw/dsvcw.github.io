@@ -38,16 +38,17 @@
             let divider = get_num("div", 1)
             let multiplier = get_num("mul", 1)
             let adder = get_num("add", 1)
+            let ndig = get_num("ndig", 2)
 
-            return [msg, start, end, divider, multiplier, adder]
+            return [msg, start, end, divider, multiplier, adder, ndig]
         }
 
         // Decode
         const decode = () => {
-            let msg, start, end, divider, multiplier, adder
-            [msg, start, end, divider, multiplier, adder] = get_vals()
+            let msg, start, end, divider, multiplier, adder, ndig
+            [msg, start, end, divider, multiplier, adder, ndig] = get_vals()
             let decoded_value = decode_pseudobinary(msg.slice(start, end))
-            let ans = adder + decoded_value * multiplier / divider
+            let ans = (adder + decoded_value * multiplier / divider).toFixed(ndig)
             set_vals(msg, decoded_value, ans)
         }
 
@@ -114,7 +115,9 @@
     <label for="mul">Multiplier</label><br>
     <input type="number" id="mul" step="0.001" value="1"><br>
     <label for="add">Adder</label><br>
-    <input type="number" id="add" step="0.001" value="0"><br><br>
+    <input type="number" id="add" step="0.001" value="0"><br>
+    <label for="ndig">Digits</label><br>
+    <input type="number" id="ndig"" value="2"><br><br>
     <input name="Submit" type="submit" value="Decode"/>
 </form>
 <div>
