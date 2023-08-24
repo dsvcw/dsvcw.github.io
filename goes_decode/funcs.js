@@ -1,11 +1,19 @@
+// Get numbers from html element by id
 const get_num = (id, default_val) => {
   let num = document.getElementById(id).value;
   if (num === "") {
     num = default_val;
+    set_val(id, default_val);
   } else {
     num = Number(num);
   }
   return num;
+};
+
+// Set value in input
+const set_val = (id, default_val) => {
+  let el = document.getElementById(id);
+  el.value = default_val;
 };
 
 // Get Values
@@ -15,23 +23,24 @@ const get_vals = () => {
   let end = Math.min(msg.length, get_num("msg_end", msg.length));
   let divider = get_num("div", 1);
   let multiplier = get_num("mul", 1);
-  let adder = get_num("add", 1);
+  let adder = get_num("add", 0);
   let ndig = get_num("ndig", 2);
 
   return [msg, start, end, divider, multiplier, adder, ndig];
 };
 
-// Decode
+// Entry
 const decode = () => {
   let msg, start, end, divider, multiplier, adder, ndig;
   [msg, start, end, divider, multiplier, adder, ndig] = get_vals();
   let msg_slice = msg.slice(start, end);
   let decoded_value = decode_pseudobinary(msg_slice);
   let ans = (adder + (decoded_value * multiplier) / divider).toFixed(ndig);
-  set_vals(msg_slice, decoded_value, ans);
+  set_result_vals(msg_slice, decoded_value, ans);
 };
 
-const set_vals = (msg, decoded_value, ans) => {
+// Display Results
+const set_result_vals = (msg, decoded_value, ans) => {
   let encoded_o = document.getElementById("encoded_output");
   encoded_o.textContent = msg;
 
@@ -42,6 +51,7 @@ const set_vals = (msg, decoded_value, ans) => {
   ans_o.textContent = ans;
 };
 
+// add leading zero to integers
 const pad = (num, size) => {
   num = num.toString();
   while (num.length < size) {
@@ -50,11 +60,9 @@ const pad = (num, size) => {
   return num;
 };
 
+// decode
 const decode_pseudobinary = (encoded_data) => {
-  let binary_value,    
-    decimal_value,
-    decoded_value,
-    intermediate_str;
+  let binary_value, decimal_value, decoded_value, intermediate_str;
 
   let binary_value_arr = [];
 
