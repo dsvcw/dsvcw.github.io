@@ -17,40 +17,110 @@
   </head>
 
   <body>
-    <h1>
-      <a href="https://dsvcw.github.io/goes_decode/"> Pseudobinary Decoder </a>
-    </h1>
-    <p>
-      Leave <code>Start</code> and <code>End</code> empty to decode the whole
-      message. The index begins at <code>0</code>.
-    </p>
-    <hr />
-    <form name="msg_data" action="javascript:decode()">
-      <label for="e_msg">Encoded Message:</label><br />
+    <header class="border-bottom border-primary mb-4">
+      <h1>
+        <a href="https://dsvcw.github.io/goes_decode/">
+          Pseudobinary Decoder
+        </a>
+      </h1>
+      <p class="text-sm mb-2">
+        Leave <code>Start</code> and <code>End</code> empty to decode the whole
+        message. The index begins at <code>0</code>.
+      </p>
+    </header>
+
+    <form name="msg_data" class="mb-4" action="javascript:decode()">
+      <div>
+        <label for="e_msg">Encoded Message:</label>
+        <input
+          type="text"
+          id="e_msg"
+          value="`BST@Ff@Ffj "
+          class="w-100 mb-1 border rounded p-1"
+        />
+      </div>
+
+      <div class="d-flex mb-1 justify-content-between">
+        <div class="d-flex flex-column w-sm-input">
+          <label for="msg_start">Start</label>
+          <input
+            type="number"
+            id="msg_start"
+            value="4"
+            min="0"
+            class="border rounded p-1"
+          />
+        </div>
+        <div class="d-flex flex-column w-sm-input">
+          <label for="msg_end">End</label>
+          <input
+            type="number"
+            id="msg_end"
+            value="7"
+            class="border rounded p-1"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex mb-1 justify-content-between">
+        <div class="d-flex flex-column w-sm-input">
+          <label for="div">Divider</label>
+          <input
+            type="number"
+            id="div"
+            step="0.00001"
+            value="1"
+            class="border rounded p-1 no-spinner"
+          />
+        </div>
+        <div class="d-flex flex-column w-sm-input">
+          <label for="mul">Multiplier</label>
+          <input
+            type="number"
+            id="mul"
+            step="0.00001"
+            value="1"
+            class="border rounded p-1 no-spinner"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex mb-1 justify-content-between">
+        <div class="d-flex flex-column w-sm-input">
+          <label for="add">Adder</label>
+          <input
+            type="number"
+            id="add"
+            step="0.000001"
+            value="0"
+            class="border rounded p-1 no-spinner"
+          />
+        </div>
+        <div class="d-flex flex-column w-sm-input">
+          <label for="ndig">Digits</label>
+          <input type="number" id="ndig" value="2" class="border rounded p-1" />
+        </div>
+      </div>
       <input
-        type="text"
-        id="e_msg"
-        value="`BST@Ff@Ffj "
-        style="width: 100%"
-      /><br />
-      <label for="msg_start">Start</label><br />
-      <input type="number" id="msg_start" value="4" min="0" /><br />
-      <label for="msg_end">End</label><br />
-      <input type="number" id="msg_end" value="7" /><br />
-      <label for="div">Divider</label><br />
-      <input type="number" id="div" step="0.00001" value="1" /><br />
-      <label for="mul">Multiplier</label><br />
-      <input type="number" id="mul" step="0.00001" value="1" /><br />
-      <label for="add">Adder</label><br />
-      <input type="number" id="add" step="0.000001" value="0" /><br />
-      <label for="ndig">Digits</label><br />
-      <input type="number" id="ndig" value="2" /><br /><br />
-      <input name="Submit" type="submit" value="Decode" />
+        class="btn btn-primary btn-lg mt-4 w-100"
+        name="Submit"
+        type="submit"
+        value="Decode"
+      />
     </form>
-    <div>
-      <p>Encoded Message: <code id="encoded_output"></code></p>
-      <p>Raw Decoded Message: <code id="decoded_output"></code></p>
-      <p>Processed Decoded Message: <code id="decoded_ans"></code></p>
+    <div class="border p-2 rounded">
+      <p>
+        <span class="text-sm">Encoded Message:</span>
+        <code id="encoded_output"> </code>
+      </p>
+      <p>
+        <span class="text-sm">Raw Decoded Message:</span>
+        <code id="decoded_output"> </code>
+      </p>
+      <p class="mb-1">
+        <span class="text-sm">Processed Decoded Message:</span>
+        <code id="decoded_ans"> </code>
+      </p>
     </div>
   </body>
 </html>

@@ -3,8 +3,28 @@ body {
   max-width: 800px;
   padding-left: 20px;
   padding-right: 20px;
+  font-size: 16px;
 }
 
 code {
   font-size: 1.25em;
+}
+
+.w-sm-input {
+  width: 47%;
+}
+
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.no-spinner[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.text-sm {
+  font-size: 0.9em;
 }
