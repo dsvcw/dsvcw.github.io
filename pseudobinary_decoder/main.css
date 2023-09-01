@@ -7,9 +7,13 @@ body {
 }
 
 code {
-  font-size: 1.25em;
+  color: #002f96f8;
+  font-size: 1.1em;
 }
 
+input {
+  font-family: var(--bs-font-monospace);
+}
 .w-sm-input {
   width: 47%;
 }
