@@ -6,10 +6,13 @@ body {
   font-size: 16px;
 }
 
-code {
-  font-size: 1.25em;
+code {  
+  font-size: 1.1em;
 }
 
+input {
+  font-family: var(--bs-font-monospace);
+}
 .w-sm-input {
   width: 47%;
 }

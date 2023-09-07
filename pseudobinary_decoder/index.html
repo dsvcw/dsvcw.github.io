@@ -1,27 +1,46 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-bs-theme="auto">
   <head>
     <meta charset="utf-8" />
     <title>Pseudobinary Decoder</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="main.css" />
-    <script type="text/javascript" src="funcs.js"></script>
+    <script type="text/javascript" src="../assets/scripts/funcs.js"></script>
+    <script>
+      (function () {
+        const htmlElement = document.querySelector("html");
+        if (htmlElement.getAttribute("data-bs-theme") === "auto") {
+          function updateTheme() {
+            document
+              .querySelector("html")
+              .setAttribute(
+                "data-bs-theme",
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+                  ? "dark"
+                  : "light"
+              );
+          }
+          window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", updateTheme);
+          updateTheme();
+        }
+      })();
+    </script>
   </head>
 
   <body>
     <header class="border-bottom border-primary mb-4">
       <h1>
-        <a href="https://dsvcw.github.io/goes_decode/">
-          Pseudobinary Decoder
-        </a>
+        <a href="/pseudobinary_decoder/"> Pseudobinary Decoder </a>
       </h1>
       <p class="text-sm mb-2">
         Leave <code>Start</code> and <code>End</code> empty to decode the whole
@@ -29,7 +48,7 @@
       </p>
     </header>
 
-    <form name="msg_data" class="mb-4" action="javascript:decode()">
+    <form name="msg_data" class="mb-4" action="javascript:main()">
       <div>
         <label for="e_msg">Encoded Message:</label>
         <input
@@ -57,6 +76,8 @@
             type="number"
             id="msg_end"
             value="7"
+            min="1"
+            max="1000"
             class="border rounded p-1"
           />
         </div>
@@ -68,8 +89,8 @@
           <input
             type="number"
             id="div"
-            step="0.00001"
-            value="1"
+            step="0.000001"
+            value="100"
             class="border rounded p-1 no-spinner"
           />
         </div>
@@ -78,7 +99,7 @@
           <input
             type="number"
             id="mul"
-            step="0.00001"
+            step="0.000001"
             value="1"
             class="border rounded p-1 no-spinner"
           />
@@ -108,7 +129,7 @@
         value="Decode"
       />
     </form>
-    <div class="border p-2 rounded">
+    <div class="border p-2 rounded mb-4 border-success">
       <p>
         <span class="text-sm">Encoded Message:</span>
         <code id="encoded_output"> </code>
@@ -121,6 +142,10 @@
         <span class="text-sm">Processed Decoded Message:</span>
         <code id="decoded_ans"> </code>
       </p>
+    </div>
+    <div id="err-container" class="p-2 rounded text-sm">
+      <h3 class="error-h3" style="visibility: hidden">FIX FOLLOWING ERRORS</h3>
+      <ul id="err" class="mb-0"></ul>
     </div>
   </body>
 </html>
