@@ -48,6 +48,55 @@
       </p>
     </header>
 
+    <div
+      class="mt-2 mb-4 d-flex flex-row justify-content-between btn-group-toggle"
+      data-toggle="buttons"
+    >
+      <div class="flex-fill">
+        <input
+          class="d-none"
+          type="radio"
+          name="decodingParams"
+          id="custom_params"
+          value="custom_params"
+          onchange="set_params('custom')"
+          autocomplete="off"
+          checked
+        />
+        <label class="w-100 btn btn-outline-primary active rounded-0" for="custom_params">
+          Custom
+        </label>
+      </div>
+      <div class="flex-fill">
+        <input
+          class="d-none"
+          type="radio"
+          name="decodingParams"
+          id="sutron_params"
+          value="sutron_params"
+          onchange="set_params('sutron')"
+          autocomplete="off"
+        />
+        <label class="w-100 btn btn-outline-primary rounded-0" for="sutron_params">
+          Sutron Voltage
+        </label>
+      </div>
+      <div class="flex-fill">
+        <input
+          class="d-none"
+          type="radio"
+          name="decodingParams"
+          id="da_params"
+          value="da_params"
+          onchange="set_params('da')"
+          autocomplete="off"
+        />
+        <label class="w-100 px-2 btn btn-outline-primary rounded-0" for="da_params">
+          DA Voltage
+        </label>
+      </div>
+    </div>
+
     <form name="msg_data" class="mb-4" action="javascript:main()">
       <div>
         <label for="e_msg">Encoded Message:</label>

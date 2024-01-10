@@ -171,3 +171,32 @@ const decode_pseudobinary = (encoded_data) => {
 
   return Number(decoded_value);
 };
+
+// set params to decode custom, sutron voltage, or DA voltage
+const set_params = (op) => {
+  if (op === "sutron") {
+    set_val("msg_start", 0);
+    set_val("msg_end", 1);
+    set_val("div", 1);
+    set_val("mul", 0.234);
+    set_val("add", 10.6);
+    set_val("ndig", 2);
+  } else if (op === "da") {
+    set_val("msg_start", 0);
+    set_val("msg_end", 1);
+    set_val("div", 1);
+    set_val("mul", 0.3124);
+    set_val("add", 0.311);
+    set_val("ndig", 2);
+  }
+  ["da", "sutron", "custom"].forEach((op_) => {
+    let id_ = `#${op_}_params`;
+    let inp = document.querySelector(id_);
+    let lab = inp.nextElementSibling;
+    if (op_ === op) {
+      lab.classList.add("active");
+    } else {
+      lab.classList.remove("active");
+    }
+  });
+};
