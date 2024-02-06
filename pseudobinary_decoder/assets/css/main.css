@@ -5,29 +5,23 @@ body {
   padding-right: 20px;
   font-size: 16px;
 }
-
 code {
   font-size: 1.1em;
 }
-
 input {
   font-family: var(--bs-font-monospace);
 }
 .w-sm-input {
   width: 47%;
 }
-
 .no-spinner::-webkit-outer-spin-button,
 .no-spinner::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
   -webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  margin: 0;
 }
-
 .no-spinner[type="number"] {
-  -moz-appearance: textfield; /* Firefox */
+  appearance: textfield;
 }
-
 .text-sm {
   font-size: 0.9em;
 }
