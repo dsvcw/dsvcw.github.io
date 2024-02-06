@@ -200,3 +200,14 @@ const set_params = (op) => {
     }
   });
 };
+const toggleTheme = (el) => {
+  let html_ = document.querySelector("html");
+  let currTheme = html_.getAttribute("data-bs-theme");
+  if (currTheme === "dark") {
+    html_.setAttribute("data-bs-theme", "light");
+  } else {
+    html_.setAttribute("data-bs-theme", "dark");
+  }
+  el.classList.toggle("bi-emoji-sunglasses-fill");
+  el.classList.toggle("bi-moon-stars");
+};

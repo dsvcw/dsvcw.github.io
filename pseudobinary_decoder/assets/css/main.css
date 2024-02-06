@@ -25,3 +25,35 @@ input {
 .text-sm {
   font-size: 0.9em;
 }
+[data-bs-theme="dark"] {
+  color-scheme: dark;
+  --bs-primary-rgb: 255, 170, 0;
+  --bs-link-color-rgb: 255, 170, 0;
+  --bs-link-hover-color-rgb: 198, 138, 0;
+  .btn-outline-primary {
+    --bs-btn-color: rgb(185, 185, 185);
+    --bs-btn-border-color: #ffaa00;
+    --bs-btn-hover-color: #000000;
+    --bs-btn-hover-bg: #ffaa00;
+    --bs-btn-hover-border-color: #ffaa00;
+    --bs-btn-active-color: #000000;
+    --bs-btn-active-bg: #ffaa00;
+    --bs-btn-active-border-color: #ffaa00;
+    --bs-btn-disabled-color: #ffaa00;
+    --bs-btn-disabled-border-color: #ffaa00;
+  }
+  .btn-primary {
+    --bs-btn-color: #3d3d3d;
+    --bs-btn-bg: #ffaa00;
+    --bs-btn-border-color: #ffaa00;
+    --bs-btn-hover-color: #000000;
+    --bs-btn-hover-bg: #ffaa00;
+    --bs-btn-hover-border-color: #ffaa00;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #000000;
+    --bs-btn-active-bg: #ffaa00;
+    --bs-btn-active-border-color: #ffaa00;
+    --bs-btn-disabled-bg: #ffaa00;
+    --bs-btn-disabled-border-color: #ffaa00;
+  }
+}
