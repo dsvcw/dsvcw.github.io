@@ -1,8 +1,6 @@
 body {
   margin: auto;
-  max-width: 800px;
-  padding-left: 20px;
-  padding-right: 20px;
+  max-width: 800px;  
   font-size: 16px;
 }
 code {
@@ -47,11 +45,11 @@ input {
     --bs-btn-bg: #ffaa00;
     --bs-btn-border-color: #ffaa00;
     --bs-btn-hover-color: #000000;
-    --bs-btn-hover-bg: #ffaa00;
+    --bs-btn-hover-bg: #d68f01;
     --bs-btn-hover-border-color: #ffaa00;
     --bs-btn-focus-shadow-rgb: 49, 132, 253;
     --bs-btn-active-color: #000000;
-    --bs-btn-active-bg: #ffaa00;
+    --bs-btn-active-bg: #c98602;
     --bs-btn-active-border-color: #ffaa00;
     --bs-btn-disabled-bg: #ffaa00;
     --bs-btn-disabled-border-color: #ffaa00;
