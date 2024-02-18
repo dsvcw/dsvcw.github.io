@@ -19,25 +19,46 @@
     <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
     <script type="text/javascript" src="assets/scripts/funcs.js"></script>
     <script>
-      (function () {
-        const htmlElement = document.querySelector("html");
-        if (htmlElement.getAttribute("data-bs-theme") === "auto") {
-          function updateTheme() {
-            document
-              .querySelector("html")
-              .setAttribute(
-                "data-bs-theme",
-                window.matchMedia("(prefers-color-scheme: dark)").matches
-                  ? "dark"
-                  : "light"
-              );
-          }
-          window
-            .matchMedia("(prefers-color-scheme: dark)")
-            .addEventListener("change", updateTheme);
-          updateTheme();
+      const toggleTheme = () => {
+        let theme = getPreferredTheme();
+        theme === "dark" ? setTheme("light") : setTheme("dark");
+      };
+
+      const getStoredTheme = () => localStorage.getItem("theme");
+
+      const setStoredTheme = (theme) => localStorage.setItem("theme", theme);
+
+      const setTheme = (theme) => {
+        setStoredTheme(theme);
+        let el = document.querySelector("#toggle-theme");
+        document.documentElement.setAttribute("data-bs-theme", theme);
+        if (theme === "dark") {
+          el.classList.remove("bi-emoji-sunglasses-fill");
+          el.classList.add("bi-moon-stars");
+        } else {
+          el.classList.add("bi-emoji-sunglasses-fill");
+          el.classList.remove("bi-moon-stars");
         }
-      })();
+      };
+
+      const getPreferredTheme = () => {
+        let theme = getStoredTheme();
+        if (!theme) {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+        return theme;
+      };
+
+      document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+          let theme = getPreferredTheme();
+          setTheme(theme);
+        },
+        false
+      );
     </script>
   </head>
 
@@ -48,9 +69,10 @@
           <a href="/pseudobinary_decoder/"> Pseudobinary Decoder </a>
         </h1>
         <i
-          class="bi bi-moon-stars fs-4 text-primary"
+          id="toggle-theme"
+          class="bi fs-4 text-primary"
           role="button"
-          onclick="toggleTheme(this)"
+          onclick="toggleTheme()"
         ></i>
       </div>
       <p class="text-sm mb-2">
