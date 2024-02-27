@@ -61,30 +61,40 @@ const check_vals = (msg_len, start, end, divider, multiplier, adder, ndig) => {
 
   let is_err = false;
 
-  if (start >= msg_len) {
+  if (msg_len === 0) {
     is_err = true;
-    add_error(
-      `<code>Start</code> cannot be equal to or greater than <code>${msg_len}</code> (message length)`
-    );
-  }
+    add_error(`<code>Encoded Message</code> cannot be empty`);
+  } else {
+    if (start >= msg_len) {
+      is_err = true;
+      add_error(
+        `<code>Start</code> cannot be equal to or greater than <code>${msg_len}</code> (message length)`
+      );
+    }
 
-  if (end > msg_len) {
-    is_err = true;
-    add_error(
-      `<code>End</code> cannot be greater than <code>${msg_len}</code> (message length)`
-    );
-  }
+    if (end > msg_len) {
+      is_err = true;
+      add_error(
+        `<code>End</code> cannot be greater than <code>${msg_len}</code> (message length)`
+      );
+    }
 
-  if (start >= end) {
-    is_err = true;
-    add_error(
-      "<code>Start</code> cannot be equal to or greater than <code>End</code>"
-    );
+    if (start >= end) {
+      is_err = true;
+      add_error(
+        "<code>Start</code> cannot be equal to or greater than <code>End</code>"
+      );
+    }
   }
 
   if (divider === 0) {
     is_err = true;
     add_error("<code>Divider</code> cannot be <code>0</code>");
+  }
+
+  if (multiplier === 0) {
+    is_err = true;
+    add_error("<code>Multiplier</code> cannot be <code>0</code>");
   }
 
   let err_h3 = document.querySelector(".error-h3");
@@ -174,19 +184,36 @@ const decode_pseudobinary = (encoded_data) => {
 
 // set params to decode custom, sutron voltage, or DA voltage
 const set_params = (op) => {
+  let msg = document.getElementById("e_msg").value;
+  msg = msg.trim();
+  let msg_start;
+  if (msg.length > 0) {
+    msg_start = msg.length - 1;
+  } else {
+    msg_start = 0;
+  }
+
   if (op === "sutron") {
-    set_val("msg_start", 0);
-    set_val("msg_end", 1);
+    set_val("msg_start", msg_start);
+    set_val("msg_end", msg_start + 1);
     set_val("div", 1);
     set_val("mul", 0.234);
     set_val("add", 10.6);
     set_val("ndig", 2);
   } else if (op === "da") {
-    set_val("msg_start", 0);
-    set_val("msg_end", 1);
+    set_val("msg_start", msg_start);
+    set_val("msg_end", msg_start + 1);
     set_val("div", 1);
     set_val("mul", 0.3124);
     set_val("add", 0.311);
+    set_val("ndig", 2);
+  } else if (op === "custom") {
+    msg_start = Math.min(4, msg.length - 1);
+    set_val("msg_start", msg_start);
+    set_val("msg_end", Math.min(7, msg.length));
+    set_val("div", 100);
+    set_val("mul", 1);
+    set_val("add", 0);
     set_val("ndig", 2);
   }
   ["da", "sutron", "custom"].forEach((op_) => {
