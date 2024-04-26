@@ -50,6 +50,12 @@ const main = () => {
     let decoded_value = decode_pseudobinary(msg_slice);
     let ans = (adder + (decoded_value * multiplier) / divider).toFixed(ndig);
     set_result_vals(msg_slice, decoded_value, ans);
+
+    let signed_value = decode_signed_pseudobinary(decoded_value);
+    let signed_ans = (adder + (signed_value * multiplier) / divider).toFixed(
+      ndig
+    );
+    set_signed_result_vals(signed_value, signed_ans);
   } else {
     set_result_vals("##", "##", "##");
   }
@@ -136,6 +142,11 @@ const set_result_vals = (msg, decoded_value, ans) => {
   set_textcontent("decoded_ans", ans);
 };
 
+const set_signed_result_vals = (decoded_value, ans) => {
+  set_textcontent("signed_decoded_output", decoded_value);
+  set_textcontent("signed_decoded_ans", ans);
+};
+
 // grab elements by id and set value
 const set_textcontent = (id, value) => {
   let el = document.getElementById(id);
@@ -181,6 +192,10 @@ const decode_pseudobinary = (encoded_data) => {
 
   return Number(decoded_value);
 };
+
+// decode
+const decode_signed_pseudobinary = (decoded_value) =>
+  decoded_value > 131071 ? 131072 - decoded_value : decoded_value;
 
 // set params to decode custom, sutron voltage, or DA voltage
 const set_params = (op) => {
